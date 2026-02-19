@@ -2,6 +2,9 @@ namespace SR_Case___Algoritmernes_Magt
 {
     internal static class Program
     {
+        //settings
+
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
