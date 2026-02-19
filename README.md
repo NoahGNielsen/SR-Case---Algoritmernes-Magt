@@ -1,5 +1,6 @@
 # SR Case 2026: Algorithmic Curation & The Echo Chamber Effect
-# Work in progress
+> [!NOTE]
+> Work in progress
 
 ## Project Overview
 This project is a prototype of a social media feed algorithm developed for my SR Case at HANSENBERG Tekniske Gymnasium. My case combines **Kommunikation & IT A** and **Programmering B** to investigate the power of algorithms over information visibility and user behavior.
