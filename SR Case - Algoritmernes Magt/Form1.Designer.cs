@@ -28,45 +28,153 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBox1 = new PictureBox();
             btn_skip = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            btn_like = new Button();
+            btn_share = new Button();
+            rtb_description = new RichTextBox();
+            label_author = new Label();
+            btn_comments = new Button();
+            label_totalShares = new Label();
+            label_totalComments = new Label();
+            label_totalLikes = new Label();
+            picBox_feed = new PictureBox();
+            btn_back = new Button();
+            ((System.ComponentModel.ISupportInitialize)picBox_feed).BeginInit();
             SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(12, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(572, 833);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // btn_skip
             // 
-            btn_skip.Location = new Point(252, 816);
+            btn_skip.Location = new Point(216, 871);
             btn_skip.Name = "btn_skip";
-            btn_skip.Size = new Size(94, 29);
+            btn_skip.Size = new Size(265, 29);
             btn_skip.TabIndex = 1;
             btn_skip.Text = "Next";
             btn_skip.UseVisualStyleBackColor = true;
+            // 
+            // btn_like
+            // 
+            btn_like.Location = new Point(554, 585);
+            btn_like.Name = "btn_like";
+            btn_like.Size = new Size(94, 29);
+            btn_like.TabIndex = 2;
+            btn_like.Text = "Like";
+            btn_like.UseVisualStyleBackColor = true;
+            btn_like.Click += button1_Click;
+            // 
+            // btn_share
+            // 
+            btn_share.Location = new Point(554, 728);
+            btn_share.Name = "btn_share";
+            btn_share.Size = new Size(94, 29);
+            btn_share.TabIndex = 4;
+            btn_share.Text = "Share";
+            btn_share.UseVisualStyleBackColor = true;
+            // 
+            // rtb_description
+            // 
+            rtb_description.Location = new Point(12, 775);
+            rtb_description.Name = "rtb_description";
+            rtb_description.Size = new Size(546, 90);
+            rtb_description.TabIndex = 6;
+            rtb_description.Text = "Place Holder";
+            // 
+            // label_author
+            // 
+            label_author.Font = new Font("Segoe UI", 13F);
+            label_author.Location = new Point(12, 744);
+            label_author.Name = "label_author";
+            label_author.Size = new Size(275, 28);
+            label_author.TabIndex = 7;
+            label_author.Text = "Place Holder";
+            label_author.Click += label1_Click;
+            // 
+            // btn_comments
+            // 
+            btn_comments.Location = new Point(554, 657);
+            btn_comments.Name = "btn_comments";
+            btn_comments.Size = new Size(94, 29);
+            btn_comments.TabIndex = 8;
+            btn_comments.Text = "Comments";
+            btn_comments.UseVisualStyleBackColor = true;
+            // 
+            // label_totalShares
+            // 
+            label_totalShares.Location = new Point(554, 700);
+            label_totalShares.Name = "label_totalShares";
+            label_totalShares.Size = new Size(94, 25);
+            label_totalShares.TabIndex = 9;
+            label_totalShares.Text = "Place Holder";
+            // 
+            // label_totalComments
+            // 
+            label_totalComments.Location = new Point(554, 629);
+            label_totalComments.Name = "label_totalComments";
+            label_totalComments.Size = new Size(94, 25);
+            label_totalComments.TabIndex = 10;
+            label_totalComments.Text = "Place Holder";
+            // 
+            // label_totalLikes
+            // 
+            label_totalLikes.Location = new Point(554, 557);
+            label_totalLikes.Name = "label_totalLikes";
+            label_totalLikes.Size = new Size(94, 25);
+            label_totalLikes.TabIndex = 11;
+            label_totalLikes.Text = "Place Holder";
+            // 
+            // picBox_feed
+            // 
+            picBox_feed.Location = new Point(1, -1);
+            picBox_feed.Name = "picBox_feed";
+            picBox_feed.Size = new Size(659, 913);
+            picBox_feed.TabIndex = 12;
+            picBox_feed.TabStop = false;
+            // 
+            // btn_back
+            // 
+            btn_back.Location = new Point(12, 12);
+            btn_back.Name = "btn_back";
+            btn_back.Size = new Size(82, 29);
+            btn_back.TabIndex = 13;
+            btn_back.Text = "Previous";
+            btn_back.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(596, 857);
+            ClientSize = new Size(660, 912);
+            Controls.Add(btn_back);
+            Controls.Add(label_totalLikes);
+            Controls.Add(label_totalComments);
+            Controls.Add(label_totalShares);
+            Controls.Add(btn_comments);
+            Controls.Add(label_author);
+            Controls.Add(rtb_description);
+            Controls.Add(btn_share);
+            Controls.Add(btn_like);
             Controls.Add(btn_skip);
-            Controls.Add(pictureBox1);
+            Controls.Add(picBox_feed);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "User UI";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBox_feed).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
         private Button btn_skip;
+        private Button btn_like;
+        private Button btn_share;
+        private RichTextBox rtb_description;
+        private Label label_author;
+        private Button btn_comments;
+        private Label label_totalShares;
+        private Label label_totalComments;
+        private Label label_totalLikes;
+        private PictureBox picBox_feed;
+        private Button btn_back;
     }
 }
