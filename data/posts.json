@@ -1,0 +1,16 @@
+[
+  {
+    "postId": 1,
+    "title": "test",
+    "description": "test",
+    "imagePath": "data/assets/images/1..jpg",
+    "likes": 0,
+    "comments": 0,
+    "shares": 0,
+    "engagement": 0,
+    "tags": [
+      "hshuas"
+    ],
+    "PostDate": "2026-02-20T10:49:55.0630387+01:00"
+  }
+]

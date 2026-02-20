@@ -28,107 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            richTextBox1 = new RichTextBox();
-            button1 = new Button();
-            button2 = new Button();
+            txtBox_title = new TextBox();
+            rtb_description = new RichTextBox();
+            btn_uploadImage = new Button();
+            btn_post = new Button();
             label_image = new Label();
             label_title = new Label();
-            label5 = new Label();
+            label_description = new Label();
+            label_imagePath = new Label();
+            rtb_tags = new RichTextBox();
+            label_tags = new Label();
             SuspendLayout();
             // 
-            // textBox1
+            // txtBox_title
             // 
-            textBox1.Location = new Point(118, 57);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "I am a title...";
-            textBox1.Size = new Size(323, 27);
-            textBox1.TabIndex = 0;
-            textBox1.TextChanged += textBox1_TextChanged;
+            txtBox_title.Location = new Point(118, 57);
+            txtBox_title.Name = "txtBox_title";
+            txtBox_title.PlaceholderText = "I am a title...";
+            txtBox_title.Size = new Size(323, 27);
+            txtBox_title.TabIndex = 0;
             // 
-            // richTextBox1
+            // rtb_description
             // 
-            richTextBox1.Location = new Point(118, 102);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(323, 111);
-            richTextBox1.TabIndex = 1;
-            richTextBox1.Text = "";
-            richTextBox1.TextChanged += richTextBox1_TextChanged;
+            rtb_description.Location = new Point(118, 102);
+            rtb_description.Name = "rtb_description";
+            rtb_description.Size = new Size(323, 111);
+            rtb_description.TabIndex = 1;
+            rtb_description.Text = "";
             // 
-            // button1
+            // btn_uploadImage
             // 
-            button1.Location = new Point(118, 230);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 2;
-            button1.Text = "Upload Image";
-            button1.UseVisualStyleBackColor = true;
+            btn_uploadImage.Location = new Point(118, 230);
+            btn_uploadImage.Name = "btn_uploadImage";
+            btn_uploadImage.Size = new Size(94, 29);
+            btn_uploadImage.TabIndex = 2;
+            btn_uploadImage.Text = "Upload Image";
+            btn_uploadImage.UseVisualStyleBackColor = true;
+            btn_uploadImage.Click += btn_uploadImage_Click;
             // 
-            // button2
+            // btn_post
             // 
-            button2.Location = new Point(118, 316);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 3;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            btn_post.Location = new Point(118, 376);
+            btn_post.Name = "btn_post";
+            btn_post.Size = new Size(94, 29);
+            btn_post.TabIndex = 3;
+            btn_post.Text = "Post";
+            btn_post.UseVisualStyleBackColor = true;
+            btn_post.Click += btn_post_Click;
             // 
             // label_image
             // 
             label_image.AutoSize = true;
-            label_image.Location = new Point(40, 234);
+            label_image.Location = new Point(21, 234);
             label_image.Name = "label_image";
-            label_image.Size = new Size(51, 20);
+            label_image.Size = new Size(57, 20);
             label_image.TabIndex = 6;
-            label_image.Text = "Image";
+            label_image.Text = "Image*";
             // 
             // label_title
             // 
             label_title.AutoSize = true;
-            label_title.Location = new Point(31, 63);
+            label_title.Location = new Point(21, 60);
             label_title.Name = "label_title";
-            label_title.Size = new Size(38, 20);
+            label_title.Size = new Size(44, 20);
             label_title.TabIndex = 4;
-            label_title.Text = "Title";
+            label_title.Text = "Title*";
             // 
-            // label5
+            // label_description
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(39, 111);
-            label5.Name = "label5";
-            label5.Size = new Size(50, 20);
-            label5.TabIndex = 5;
-            label5.Text = "label5";
+            label_description.AutoSize = true;
+            label_description.Location = new Point(21, 105);
+            label_description.Name = "label_description";
+            label_description.Size = new Size(91, 20);
+            label_description.TabIndex = 5;
+            label_description.Text = "Description*";
+            // 
+            // label_imagePath
+            // 
+            label_imagePath.Location = new Point(227, 234);
+            label_imagePath.Name = "label_imagePath";
+            label_imagePath.Size = new Size(264, 20);
+            label_imagePath.TabIndex = 7;
+            label_imagePath.Text = "No image has been attached";
+            // 
+            // rtb_tags
+            // 
+            rtb_tags.Location = new Point(118, 280);
+            rtb_tags.Name = "rtb_tags";
+            rtb_tags.Size = new Size(323, 50);
+            rtb_tags.TabIndex = 8;
+            rtb_tags.Text = "";
+            // 
+            // label_tags
+            // 
+            label_tags.AutoSize = true;
+            label_tags.Location = new Point(21, 280);
+            label_tags.Name = "label_tags";
+            label_tags.Size = new Size(44, 20);
+            label_tags.TabIndex = 9;
+            label_tags.Text = "Tags*";
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 582);
-            Controls.Add(label5);
+            ClientSize = new Size(605, 445);
+            Controls.Add(label_tags);
+            Controls.Add(rtb_tags);
+            Controls.Add(label_imagePath);
+            Controls.Add(label_description);
             Controls.Add(label_title);
             Controls.Add(label_image);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(richTextBox1);
-            Controls.Add(textBox1);
+            Controls.Add(btn_post);
+            Controls.Add(btn_uploadImage);
+            Controls.Add(rtb_description);
+            Controls.Add(txtBox_title);
             Name = "Form2";
-            Text = "Form2";
+            Text = "Posting a post...";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox1;
-        private RichTextBox richTextBox1;
-        private Button button1;
-        private Button button2;
-        private Label label1;
-        private Label label2;
+        private TextBox txtBox_title;
+        private RichTextBox rtb_description;
+        private Button btn_uploadImage;
+        private Button btn_post;
         private Label label_image;
-        private Label label4;
         private Label label_title;
-        private Label label5;
+        private Label label_description;
+        private Label label_imagePath;
+        private RichTextBox rtb_tags;
+        private Label label_tags;
     }
 }

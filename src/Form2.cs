@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace SR_Case___Algoritmernes_Magt
 {
@@ -15,19 +16,20 @@ namespace SR_Case___Algoritmernes_Magt
             InitializeComponent();
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void btn_uploadImage_Click(object sender, EventArgs e)
         {
-
+            string imagePath = Program.imageUploader();
+            label_imagePath.Text = imagePath;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void btn_post_Click(object sender, EventArgs e)
         {
+            string title = txtBox_title.Text;
+            string description = rtb_description.Text;
+            string imagePath = label_imagePath.Text;
+            var Tags = new List<string>(rtb_tags.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
+            Program.CreateNewPost(title, description, imagePath, Tags);
         }
     }
 }

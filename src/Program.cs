@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SR_Case___Algoritmernes_Magt
 {
@@ -100,10 +101,14 @@ namespace SR_Case___Algoritmernes_Magt
             }
         }
 
-        public static void CreateNewPost(string title, string description, string extension, List<string> tags)
+        public static void CreateNewPost(string title, string description, string imageFilePath, List<string> tags)
         {
-            // Define the path to posts.json
+            // Define the file paths
             string postsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\posts.json");
+            string imagesFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\assets\\images\\");
+
+            // Extract the file name and extension from the provided image file path
+            string extension = Path.GetExtension(imageFilePath);
 
             // Takes existing posts and deserializes them
             List<Post> posts = new List<Post>();
@@ -113,21 +118,45 @@ namespace SR_Case___Algoritmernes_Magt
                 posts = JsonSerializer.Deserialize<List<Post>>(existingJson) ?? new List<Post>();
             }
 
-            int newId = posts.Count > 0 ? posts.Max(p => p.postId) + 1 : 1; //creates a new id
+            //creates a new id, takes highest existing id and adds 1
+            int newId = posts.Count > 0 ? posts.Max(p => p.postId) + 1 : 1;
 
-            Post newPost = new Post
+
+
+            string newImageName = newId + extension;
+            string fullPathToImage = Path.Combine(imagesFolder, newImageName);
+
+            if (File.Exists(imageFilePath))
             {
-                postId = newId,
-                title = title,
-                description = description,
-                imagePath = $"data/assets/images/{newId}.{extension}",
-                likes = 0,
-                comments = 0,
-                shares = 0,
-                engagement = 0,
-                tags = tags,
-                PostDate = DateTime.Now
-            };
+                // Ensure directory exists and copy the file
+                Directory.CreateDirectory(imagesFolder);
+                File.Copy(imageFilePath, fullPathToImage, true);
+            } else
+            {
+                if (GlobalConfig.debugMode == true)
+                {
+                    Console.WriteLine("Debug Mode | Image file not found at path: " + imageFilePath + "\nFunction has stopped to prevent id numbers to get fucked up");
+                }
+                return;
+            }
+
+
+
+                //Creates a new post in the list
+                Post newPost = new Post
+                {
+                    postId = newId,
+                    title = title,
+                    description = description,
+                    imagePath = $"data/assets/images/{newId}{extension}",
+                    likes = 0,
+                    comments = 0,
+                    shares = 0,
+                    engagement = 0,
+                    tags = tags,
+                    PostDate = DateTime.Now
+                };
+
 
             // save the new post 
             posts.Add(newPost); // Add the new post to the list
@@ -137,6 +166,31 @@ namespace SR_Case___Algoritmernes_Magt
             File.WriteAllText(postsPath, updatedJson); // Save it to the file
 
             Console.WriteLine("Successfully created Post, ID: " + newId + ", Title: "+ title);
+        }
+
+        public static string imageUploader()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+
+            //config for the file dialog
+            fileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png"; // Limit to jpeg and png files
+            fileDialog.Title = "Select Images to Upload";
+            fileDialog.Multiselect = false; // Only one image
+
+
+            if (fileDialog.ShowDialog() == DialogResult.OK) //if a user selects a file and clicks "OK"
+            {
+                if (GlobalConfig.debugMode)
+                {
+                    Console.WriteLine("Debug Mode | Selected file: " + fileDialog.FileName);
+                }
+                return fileDialog.FileName;
+            }
+            else //if the user cancels the file selection
+            {
+                Console.WriteLine("No file selected.");
+                return "No file selected or something went wrong";
+            }
         }
     }
 }
