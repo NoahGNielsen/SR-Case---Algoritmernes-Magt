@@ -39,6 +39,25 @@ namespace SR_Case___Algoritmernes_Magt
             // Windows Forms application code
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+            startUp();
+        }
+
+        static void startUp()
+        {
+            // Check if the posts.json, user.json and the assets folder exist, if not creates them
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\posts.json")))
+            {
+                File.Create(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\posts.json"));
+            }
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\users.json")))
+            {
+                File.Create(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\users.json"));
+            }
+
+            //checks if the images folder exists, if not create it
+            Directory.CreateDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\assets\\images\\"));
+
+            return;
         }
 
 
