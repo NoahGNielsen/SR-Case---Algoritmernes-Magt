@@ -38,6 +38,7 @@
             label_imagePath = new Label();
             rtb_tags = new RichTextBox();
             label_tags = new Label();
+            label_separateNotice = new Label();
             SuspendLayout();
             // 
             // txtBox_title
@@ -107,9 +108,8 @@
             // 
             label_imagePath.Location = new Point(227, 234);
             label_imagePath.Name = "label_imagePath";
-            label_imagePath.Size = new Size(264, 20);
+            label_imagePath.Size = new Size(366, 20);
             label_imagePath.TabIndex = 7;
-            label_imagePath.Text = "No image has been attached";
             // 
             // rtb_tags
             // 
@@ -128,11 +128,22 @@
             label_tags.TabIndex = 9;
             label_tags.Text = "Tags*";
             // 
+            // label_separateNotice
+            // 
+            label_separateNotice.AutoSize = true;
+            label_separateNotice.Font = new Font("Segoe UI", 7F);
+            label_separateNotice.Location = new Point(118, 333);
+            label_separateNotice.Name = "label_separateNotice";
+            label_separateNotice.Size = new Size(161, 15);
+            label_separateNotice.TabIndex = 10;
+            label_separateNotice.Text = "Use commas to separate tags";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(605, 445);
+            Controls.Add(label_separateNotice);
             Controls.Add(label_tags);
             Controls.Add(rtb_tags);
             Controls.Add(label_imagePath);
@@ -161,5 +172,6 @@
         private Label label_imagePath;
         private RichTextBox rtb_tags;
         private Label label_tags;
+        private Label label_separateNotice;
     }
 }

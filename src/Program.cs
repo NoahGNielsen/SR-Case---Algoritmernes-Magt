@@ -1,10 +1,16 @@
 using System;
-using System.Text.Json;
 using System.IO;
+using System.Reflection;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace SR_Case___Algoritmernes_Magt
 {
+
+    /*To-DO
+     * - The first few post shoud be random to get a good variety of posts in the beginning, before the algorithm has enough data to personalize the feed
+     * -
+     */
     public static class GlobalConfig //settings
     {
         public readonly static bool feedModePersonalization = true; //default: true
@@ -46,7 +52,7 @@ namespace SR_Case___Algoritmernes_Magt
             double weightLikes = 1; //default: 1
             double weightComments = 3; //default: 3
             double weightShares = 5; //default: 5
-            double weightGravity = 1.3; //default: 1.8
+            double weightGravity = 1.3; //default: 1.3
             double weightFinalScore = 1000; //default: 1000
 
 
@@ -101,7 +107,7 @@ namespace SR_Case___Algoritmernes_Magt
             }
         }
 
-        public static void CreateNewPost(string title, string description, string imageFilePath, List<string> tags)
+        public static bool CreateNewPost(string title, string description, string imageFilePath, List<string> tags)
         {
             // Define the file paths
             string postsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\posts.json");
@@ -112,19 +118,18 @@ namespace SR_Case___Algoritmernes_Magt
 
             // Takes existing posts and deserializes them
             List<Post> posts = new List<Post>();
-            if (File.Exists(postsPath))
+            if (File.Exists(postsPath) && postsPath.Length != 0)
             {
                 string existingJson = File.ReadAllText(postsPath);
                 posts = JsonSerializer.Deserialize<List<Post>>(existingJson) ?? new List<Post>();
             }
 
-            //creates a new id, takes highest existing id and adds 1
+            // New id, takes highest existing id and adds 1
             int newId = posts.Count > 0 ? posts.Max(p => p.postId) + 1 : 1;
 
 
-
-            string newImageName = newId + extension;
-            string fullPathToImage = Path.Combine(imagesFolder, newImageName);
+            // Define the path for the new image
+            string fullPathToImage = Path.Combine(imagesFolder, newId + extension);
 
             if (File.Exists(imageFilePath))
             {
@@ -137,7 +142,8 @@ namespace SR_Case___Algoritmernes_Magt
                 {
                     Console.WriteLine("Debug Mode | Image file not found at path: " + imageFilePath + "\nFunction has stopped to prevent id numbers to get fucked up");
                 }
-                return;
+                MessageBox.Show("Something went wrong there...");
+                return false;
             }
 
 
@@ -166,6 +172,7 @@ namespace SR_Case___Algoritmernes_Magt
             File.WriteAllText(postsPath, updatedJson); // Save it to the file
 
             Console.WriteLine("Successfully created Post, ID: " + newId + ", Title: "+ title);
+            return true;
         }
 
         public static string imageUploader()

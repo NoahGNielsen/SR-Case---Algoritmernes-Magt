@@ -27,9 +27,18 @@ namespace SR_Case___Algoritmernes_Magt
             string title = txtBox_title.Text;
             string description = rtb_description.Text;
             string imagePath = label_imagePath.Text;
-            var Tags = new List<string>(rtb_tags.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
+            var Tags = new List<string>(rtb_tags.Text.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries));
 
-            Program.CreateNewPost(title, description, imagePath, Tags);
+            bool postCreated = Program.CreateNewPost(title, description, imagePath, Tags);
+
+            if (postCreated)
+            {
+                MessageBox.Show("Post created successfully!");
+                this.Close();
+            } else if (postCreated)
+            {
+                MessageBox.Show("Failed to create post. Please check your input and try again.");
+            }
         }
     }
 }
