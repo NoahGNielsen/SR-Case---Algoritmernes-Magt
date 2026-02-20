@@ -42,6 +42,22 @@ namespace SR_Case___Algoritmernes_Magt
             startUp();
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         static void startUp()
         {
             // Check if the posts.json, user.json and the assets folder exist, if not creates them
@@ -65,7 +81,7 @@ namespace SR_Case___Algoritmernes_Magt
         /*
          * Calculates the value of a post that is Personally Relevant to the user 
          */
-        private static readonly Random _random = new Random();
+        static readonly Random _random = new Random();
         static long postValue(int PTIS, int likes, int comments, int shares, int postEngagement, DateTime postDate)
         {
             //Weights
@@ -101,9 +117,7 @@ namespace SR_Case___Algoritmernes_Magt
 
 
             /*
-             * 
-             *The algorithm to calculate the post value
-             *
+             *THE algorithm
              */
 
             //checks if feed personalization is active

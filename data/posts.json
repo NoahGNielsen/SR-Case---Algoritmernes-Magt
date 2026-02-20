@@ -1,0 +1,22 @@
+[
+  {
+    "postId": 1,
+    "title": "fred er grim",
+    "description": "Her er fred fra hus og have rigtig grim. Tilg\u00E6ngel s\u00E5 er der business",
+    "imagePath": "data/assets/images/1.jpg",
+    "likes": 0,
+    "comments": 0,
+    "shares": 0,
+    "engagement": 0,
+    "tags": [
+      "Fred",
+      " Bilka",
+      " Hus \u0026 Have",
+      " Hate",
+      " notPersonal",
+      " Business",
+      " Money"
+    ],
+    "PostDate": "2026-02-20T18:55:41.0409256+01:00"
+  }
+]
