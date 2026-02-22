@@ -3,10 +3,10 @@
     "userId": 1,
     "name": "Noah",
     "pitsTags": [
-        { "topic": "politics", "score": 0 },
-        { "topic": "sport", "score": 0 },
-        { "topic": "funny", "score": 0 },
-        { "topic": "dogs", "score": 0 }
+        { "tag": "politics", "score": 0 },
+        { "tag": "sport", "score": 0 },
+        { "tag": "funny", "score": 0 },
+        { "tag": "dogs", "score": 0 }
     ],
     "lastWatchedVideos": [
         {"videoId": "1"}

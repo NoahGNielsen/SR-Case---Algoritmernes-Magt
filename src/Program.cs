@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.IO;
 using System.Reflection;
@@ -85,18 +86,62 @@ namespace SR_Case___Algoritmernes_Magt
         
         }
 
-        public static string getPostInfo (int postId, string infoType) //stub
+        static int PTIS(int userId, int postId) //stub
         {
-            // This function would retrieve the necessary information about a post, such as its tags and engagement metrics, to be used in the feed algorithm.
-            // Options are going to be "tags", "likes", "comments", "shares", "engagement", "postDate", "title" and "description"
-
+            /*
+            // 1. Setup Paths
+            string usersPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\users.json");
             string postsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\posts.json");
 
-            return "stub";
+            try
+            {
+                // 2. Read and Parse JSON
+                var users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(usersPath));
+                var posts = JsonSerializer.Deserialize<List<Post>>(File.ReadAllText(postsPath));
+
+                // 3. Find the specific user and post
+                var user = users.FirstOrDefault(u => u.userId == userId);
+                var post = posts.FirstOrDefault(p => p.postId == postId);
+
+                if (user == null || post == null || post.tags == null || post.tags.Count == 0)
+                    return 0;
+
+                int totalScore = 0;
+                int matchedTagsCount = 0;
+
+                // 4. Cross-reference tags (Case-Insensitive)
+                foreach (var postTag in post.tags)
+                {
+                    // ToLower() and Trim() to handle the " Bilka" spacing in your JSON
+                    string cleanPostTag = postTag.Trim().ToLower();
+
+                    var match = user.pitsTags.FirstOrDefault(ut => ut.tag.ToLower() == cleanPostTag);
+
+                    if (match != null)
+                    {
+                        totalScore += match.score;
+                        matchedTagsCount++;
+                    }
+                }
+
+                // 5. Calculate Average
+                // If no tags matched, return 0 to avoid division by zero
+                if (post.tags.Count == 0) return 0;
+
+                // Your requirement: Divide total score by the amount of tags on the post
+                return totalScore / post.tags.Count;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error processing PTIS: {ex.Message}");
+                return -1;
+            }
+            */
         }
 
         public static int requstNewPostToFeed(int userId) //stub
         {
+            // This is gonna return the postId to next post
             // This is a "organizer" you know, like does all the handeling of requesting a new post to the feed.
             return -1;
         }
