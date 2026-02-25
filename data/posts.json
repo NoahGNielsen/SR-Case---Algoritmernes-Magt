@@ -4,9 +4,9 @@
     "title": "fred er grim",
     "description": "Her er fred fra hus \u0026 have i bilka rigtig grim :D\uD83D\uDE18 Tilg\u00E6ngel s\u00E5 er der business",
     "imagePath": "data/assets/images/1.jpg",
-    "likes": 142,
-    "comments": 23,
-    "shares": 12,
+    "likes": 284,
+    "comments": 46,
+    "shares": 24,
     "engagement": 684,
     "tags": ["Fred", "Bilka", "Hus \u0026 Have", "Hate", "notPersonal", "Business", "Money"],
     "PostDate": "2026-02-20T18:55:41.0409256+01:00"
@@ -92,7 +92,7 @@
     "comments": 52,
     "shares": 11,
     "engagement": 290,
-    "tags": ["Alexandra", "Lab", "funny", "dumbface", "gloves"],
+    "tags": ["Alexandra", "lab", "funny", "dumbface", "gloves"],
     "PostDate": "2026-02-23T18:01:09.6614006+01:00"
   },
   {
@@ -260,7 +260,7 @@
     "comments": 14,
     "shares": 6,
     "engagement": 321,
-    "tags": ["lab. looking good"],
+    "tags": ["lab", "looking good"],
     "PostDate": "2026-02-23T18:18:00.4119215+01:00"
   },
   {

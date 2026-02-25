@@ -12,7 +12,7 @@ namespace SR_Case___Algoritmernes_Magt
     public static class GlobalConfig //settings
     {
         public readonly static bool feedModePersonalization = true; //default: true
-        public readonly static bool debugMode = true; //default: false
+        public readonly static bool debugMode = false; //default: false
         public readonly static int watchHistorySize = 10; // default: 10
     }
 
