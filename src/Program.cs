@@ -290,13 +290,77 @@ namespace SR_Case___Algoritmernes_Magt
                 return 0;
             }
 
-            // Calculate time passed since the last "Next" click
+            // Calculate time passed on a post
             TimeSpan timeSpent = DateTime.Now - _lastPostStartTime.Value;
 
-            // Reset the start time for the NEW post that just loaded
+            // Reset the start time for the next post
             _lastPostStartTime = DateTime.Now;
 
             return (long)timeSpent.TotalMilliseconds;
+        }
+
+        public static void UpdateUserTagScore(int userId, int postId, long timeSpentMs)
+        {
+            string usersPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\users.json");
+            string postsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\posts.json");
+
+            if (!File.Exists(usersPath) || !File.Exists(postsPath)) return;
+
+            try
+            {
+                // Get the tags for the specific post
+                string postsJson = File.ReadAllText(postsPath);
+                var posts = JsonSerializer.Deserialize<List<Post>>(postsJson);
+                var currentPost = posts?.FirstOrDefault(p => p.postId == postId);
+
+                if (currentPost == null || currentPost.tags == null) return;
+
+                /* Determine points to add based on time
+                 * 0-2 seconds: 0 points
+                 * 2-5 seconds: 2 points
+                 * 5-15 seconds: 5 points
+                 * 15+ seconds: 10 points
+                */
+                int pointsToAdd = 0;
+                if (timeSpentMs > 15000) pointsToAdd = 10;
+                else if (timeSpentMs > 5000) pointsToAdd = 5;
+                else if (timeSpentMs > 2000) pointsToAdd = 2;
+
+                if (pointsToAdd == 0)
+                {
+                    return;
+                }
+
+                // Update the user's tag scores
+                string usersJson = File.ReadAllText(usersPath);
+                List<User> users = JsonSerializer.Deserialize<List<User>>(usersJson) ?? new List<User>();
+                var user = users.FirstOrDefault(u => u.userId == userId);
+
+                if (user != null)
+                {
+                    foreach (var postTag in currentPost.tags)
+                    {
+                        var userTag = user.pitsTags.FirstOrDefault(t => t.tag.Trim().ToLower() == postTag.Trim().ToLower());
+                        if (userTag != null) // Checks if it is null to make the compiler happy
+                        {
+                            userTag.score += pointsToAdd; // Add points to the tag score
+                        }
+                    }
+
+                    // Save it
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    File.WriteAllText(usersPath, JsonSerializer.Serialize(users, options));
+
+                    if (GlobalConfig.debugMode)
+                    {
+                        Debug.WriteLine($"Debug Mode | Added {pointsToAdd} points to tags for Post {postId} (Time: {timeSpentMs}ms)");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error in UpdateUserTagScore: " + ex.Message);
+            }
         }
 
         public static void likePost(int postId)
