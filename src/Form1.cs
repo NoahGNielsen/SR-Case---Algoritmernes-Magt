@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace SR_Case___Algoritmernes_Magt
 {
@@ -55,11 +56,12 @@ namespace SR_Case___Algoritmernes_Magt
                         case 8: postImage.RotateFlip(RotateFlipType.Rotate270FlipNone); break;
                     }
                 }
-                Program.UpdateUserTagScore(Program.userId(), currentPostId, Program.getPostTime());
             }
+            Program.UpdateUserTagScore(Program.userId(), currentPostId, Program.getPostTime());
 
             // Assign the image to the PictureBox control
             picBox_feed.Image = postImage;
+            UpdatePostUI(currentPostId);
 
             if (GlobalConfig.debugMode == true)
             {
@@ -67,19 +69,58 @@ namespace SR_Case___Algoritmernes_Magt
             }
         }
 
+        private void UpdatePostUI(int postId)
+        {
+            try
+            {
+                string postsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\posts.json");
+                if (!File.Exists(postsPath)) return;
+
+                string json = File.ReadAllText(postsPath);
+                var posts = JsonSerializer.Deserialize<List<Post>>(json);
+                var post = posts?.FirstOrDefault(p => p.postId == postId);
+
+                if (post == null) return;
+
+                label_author.Text = post.title;
+                rtb_description.Text = post.description;
+                label_totalLikes.Text = $"👍 {post.likes}";
+                label_totalComments.Text = $"💬 {post.comments}";
+                label_totalShares.Text = $"🔁 {post.shares}";
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error in UpdatePostUI: " + ex.Message);
+            }
+
+            // Reset btn's for next post
+            btn_like.Enabled = true;
+            btn_like.Text = "Like";
+            btn_comments.Enabled = true;
+            btn_comments.Text = "Comment";
+            btn_share.Enabled = true;
+            btn_share.Text = "Share";
+        }
+
         private void btn_like_Click(object sender, EventArgs e)
         {
             Program.UpdateUserEngagement(Program.userId(), currentPostId, "Like");
+            btn_like.Enabled = false;
+            btn_like.Text = "Liked!";
         }
 
         private void btn_comments_Click(object sender, EventArgs e)
         {
             Program.UpdateUserEngagement(Program.userId(), currentPostId, "Comment");
+            btn_comments.Enabled = false;
+            btn_comments.Text = "Commented!";
         }
 
         private void btn_share_Click(object sender, EventArgs e)
         {
             Program.UpdateUserEngagement(Program.userId(), currentPostId, "Share");
+            btn_share.Enabled = false;
+            btn_share.Text = "Shared!";
         }
     }
 }

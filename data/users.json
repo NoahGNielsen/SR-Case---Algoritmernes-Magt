@@ -12,15 +12,15 @@
       },
       {
         "tag": "doggo",
-        "score": 95
+        "score": 122
       },
       {
         "tag": "cute",
-        "score": 113
+        "score": 141
       },
       {
         "tag": "love",
-        "score": 103
+        "score": 126
       },
       {
         "tag": "Monster",
@@ -28,7 +28,7 @@
       },
       {
         "tag": "selfie",
-        "score": 15
+        "score": 19
       },
       {
         "tag": "Ultra Fiesta",
@@ -52,19 +52,19 @@
       },
       {
         "tag": "bus",
-        "score": 25
+        "score": 30
       },
       {
         "tag": "herkules",
-        "score": 108
+        "score": 132
       },
       {
         "tag": "sleeping",
-        "score": 20
+        "score": 29
       },
       {
         "tag": "fallout dog",
-        "score": 20
+        "score": 25
       },
       {
         "tag": "trip",
@@ -116,67 +116,67 @@
       },
       {
         "tag": "swimming",
-        "score": 48
+        "score": 51
       },
       {
         "tag": "majestic",
-        "score": 50
+        "score": 56
       },
       {
         "tag": "nice",
-        "score": 15
+        "score": 16
       },
       {
         "tag": "looking good",
-        "score": 30
+        "score": 32
       },
       {
         "tag": "Noah",
-        "score": 65
+        "score": 85
       },
       {
         "tag": "bestfriends",
-        "score": 45
+        "score": 50
       },
       {
         "tag": "beach",
-        "score": 45
+        "score": 50
       },
       {
         "tag": "4080 Super Noctua Edition",
-        "score": 10
+        "score": 8
       },
       {
         "tag": "4080",
-        "score": 10
+        "score": 8
       },
       {
         "tag": "GPU",
-        "score": 10
+        "score": 8
       },
       {
         "tag": "VJ",
-        "score": 25
+        "score": 26
       },
       {
         "tag": "concert",
-        "score": 25
+        "score": 26
       },
       {
         "tag": "music",
-        "score": 25
+        "score": 26
       },
       {
         "tag": "beer",
-        "score": 15
+        "score": 27
       },
       {
         "tag": "happy",
-        "score": 15
+        "score": 18
       },
       {
         "tag": "carlsberg",
-        "score": 15
+        "score": 20
       },
       {
         "tag": "nice clothes",
@@ -192,30 +192,45 @@
       },
       {
         "tag": "double Noah",
-        "score": 10
+        "score": 14
       },
       {
         "tag": "Legend",
-        "score": 10
+        "score": 14
       },
       {
         "tag": "Litwin",
-        "score": 10
+        "score": 14
       },
       {
         "tag": "party",
-        "score": 10
+        "score": 21
+      },
+      {
+        "tag": "BassMike",
+        "score": 17
+      },
+      {
+        "tag": "mr. canada",
+        "score": 17
+      },
+      {
+        "tag": "having fun",
+        "score": 17
       }
     ],
     "lastWatchedVideos": [
       {
+        "videoId": "10"
+      },
+      {
         "videoId": "13"
       },
       {
-        "videoId": "14"
+        "videoId": "30"
       },
       {
-        "videoId": "28"
+        "videoId": "14"
       },
       {
         "videoId": "4"
@@ -224,19 +239,16 @@
         "videoId": "5"
       },
       {
-        "videoId": "6"
-      },
-      {
-        "videoId": "19"
-      },
-      {
-        "videoId": "24"
-      },
-      {
         "videoId": "23"
       },
       {
-        "videoId": "27"
+        "videoId": "6"
+      },
+      {
+        "videoId": "11"
+      },
+      {
+        "videoId": "19"
       }
     ]
   }
