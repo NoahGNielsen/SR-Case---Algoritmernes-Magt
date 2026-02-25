@@ -12,15 +12,15 @@
       },
       {
         "tag": "doggo",
-        "score": 50
+        "score": 95
       },
       {
         "tag": "cute",
-        "score": 75
+        "score": 113
       },
       {
         "tag": "love",
-        "score": 75
+        "score": 103
       },
       {
         "tag": "Monster",
@@ -52,19 +52,19 @@
       },
       {
         "tag": "bus",
-        "score": 15
+        "score": 25
       },
       {
         "tag": "herkules",
-        "score": 75
+        "score": 108
       },
       {
         "tag": "sleeping",
-        "score": 10
+        "score": 20
       },
       {
         "tag": "fallout dog",
-        "score": 10
+        "score": 20
       },
       {
         "tag": "trip",
@@ -116,23 +116,23 @@
       },
       {
         "tag": "swimming",
-        "score": 40
+        "score": 48
       },
       {
         "tag": "majestic",
-        "score": 45
+        "score": 50
       },
       {
         "tag": "nice",
-        "score": 10
-      },
-      {
-        "tag": "looking good",
         "score": 15
       },
       {
+        "tag": "looking good",
+        "score": 30
+      },
+      {
         "tag": "Noah",
-        "score": 50
+        "score": 65
       },
       {
         "tag": "bestfriends",
@@ -155,32 +155,59 @@
         "score": 10
       },
       {
-        "tag": "Happy",
-        "score": 10
-      },
-      {
         "tag": "VJ",
-        "score": 15
+        "score": 25
       },
       {
         "tag": "concert",
-        "score": 15
+        "score": 25
       },
       {
         "tag": "music",
+        "score": 25
+      },
+      {
+        "tag": "beer",
         "score": 15
+      },
+      {
+        "tag": "happy",
+        "score": 15
+      },
+      {
+        "tag": "carlsberg",
+        "score": 15
+      },
+      {
+        "tag": "nice clothes",
+        "score": 10
+      },
+      {
+        "tag": "mirror pic",
+        "score": 10
+      },
+      {
+        "tag": "tinder pic",
+        "score": 10
+      },
+      {
+        "tag": "double Noah",
+        "score": 10
+      },
+      {
+        "tag": "Legend",
+        "score": 10
+      },
+      {
+        "tag": "Litwin",
+        "score": 10
+      },
+      {
+        "tag": "party",
+        "score": 10
       }
     ],
     "lastWatchedVideos": [
-      {
-        "videoId": "9"
-      },
-      {
-        "videoId": "10"
-      },
-      {
-        "videoId": "11"
-      },
       {
         "videoId": "13"
       },
@@ -188,7 +215,7 @@
         "videoId": "14"
       },
       {
-        "videoId": "19"
+        "videoId": "28"
       },
       {
         "videoId": "4"
@@ -200,7 +227,16 @@
         "videoId": "6"
       },
       {
+        "videoId": "19"
+      },
+      {
+        "videoId": "24"
+      },
+      {
         "videoId": "23"
+      },
+      {
+        "videoId": "27"
       }
     ]
   }

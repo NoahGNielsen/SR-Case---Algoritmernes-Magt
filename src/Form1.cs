@@ -55,7 +55,7 @@ namespace SR_Case___Algoritmernes_Magt
                         case 8: postImage.RotateFlip(RotateFlipType.Rotate270FlipNone); break;
                     }
                 }
-                //Program.UpdateUserTagScore(Program.userId())
+                Program.UpdateUserTagScore(Program.userId(), currentPostId, Program.getPostTime());
             }
 
             // Assign the image to the PictureBox control
