@@ -12,7 +12,7 @@ namespace SR_Case___Algoritmernes_Magt
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            btn_skip_Click(this, EventArgs.Empty);
         }
 
         private void btn_newPost_Click(object sender, EventArgs e)

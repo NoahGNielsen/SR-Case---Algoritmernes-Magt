@@ -46,10 +46,10 @@ namespace SR_Case___Algoritmernes_Magt
         [STAThread]
         static void Main()
         {
+            startUp();
             // Windows Forms application code
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
-            startUp();
         }
 
         static void startUp()
@@ -118,7 +118,9 @@ namespace SR_Case___Algoritmernes_Magt
             var postTags = post.GetProperty("tags").EnumerateArray().ToList();
 
             if (postTags.Count == 0 || userPitsLookup.Count == 0)
+            {
                 return 0;
+            }
 
             int totalScore = 0;
             int maxScore = 0;
@@ -317,11 +319,9 @@ namespace SR_Case___Algoritmernes_Magt
                 else if (timeSpentMs > 2000)
                 {
                     pointsToAdd = 2;
-                }
-
-                if (pointsToAdd == 0)
+                } else
                 {
-                    return;
+                    pointsToAdd = -2; // If the user spends less than 2 seconds, subtacks 2 points
                 }
 
                 // Update the user's tag scores
@@ -492,10 +492,8 @@ namespace SR_Case___Algoritmernes_Magt
             string extension = Path.GetExtension(imageFilePath);
 
             // Takes existing posts and deserializes them
-
-            // There is a bug where if no data is in the posts.json file, it will crash.
             List<Post> posts = new List<Post>();
-            if (File.Exists(postsPath) && postsPath.Length != 0)
+            if (File.Exists(postsPath) && new FileInfo(postsPath).Length != 0)
             {
                 string existingJson = File.ReadAllText(postsPath);
                 posts = JsonSerializer.Deserialize<List<Post>>(existingJson) ?? new List<Post>();
@@ -504,51 +502,53 @@ namespace SR_Case___Algoritmernes_Magt
             // New id, takes highest existing id and adds 1
             int newId = posts.Count > 0 ? posts.Max(p => p.postId) + 1 : 1;
 
-
             // Define the path for the new image
             string fullPathToImage = Path.Combine(imagesFolder, newId + extension);
 
             if (File.Exists(imageFilePath))
             {
-                // Ensure directory exists and copy the file
                 Directory.CreateDirectory(imagesFolder);
                 File.Copy(imageFilePath, fullPathToImage, true);
-            } else
+            }
+            else
             {
                 if (GlobalConfig.debugMode == true)
                 {
-                    Debug.WriteLine("Debug Mode | Image file not found at path: " + imageFilePath + "\nFunction has stopped to prevent id numbers to get fucked up");
+                    Debug.WriteLine("Debug Mode | Image file not found at path: " + imageFilePath);
                 }
                 MessageBox.Show("Something went wrong there...");
                 return false;
             }
 
+            // Trims and removes empty tags
+            List<string> cleanedTags = tags?
+                .Select(t => t.Trim())
+                .Where(t => !string.IsNullOrEmpty(t))
+                .ToList() ?? new List<string>();
 
+            // Creates a new post in the list
+            Post newPost = new Post
+            {
+                postId = newId,
+                title = title,
+                description = description,
+                imagePath = $"data/assets/images/{newId}{extension}",
+                likes = 0,
+                comments = 0,
+                shares = 0,
+                engagement = 0,
+                tags = cleanedTags, // Using the cleaned list
+                PostDate = DateTime.Now
+            };
 
-                //Creates a new post in the list
-                Post newPost = new Post
-                {
-                    postId = newId,
-                    title = title,
-                    description = description,
-                    imagePath = $"data/assets/images/{newId}{extension}",
-                    likes = 0,
-                    comments = 0,
-                    shares = 0,
-                    engagement = 0,
-                    tags = tags,
-                    PostDate = DateTime.Now
-                };
+            // Save the new post 
+            posts.Add(newPost);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string updatedJson = JsonSerializer.Serialize(posts, options);
 
+            File.WriteAllText(postsPath, updatedJson);
 
-            // save the new post 
-            posts.Add(newPost); // Add the new post to the list
-            var options = new JsonSerializerOptions { WriteIndented = true }; // For better readability of the JSON file
-            string updatedJson = JsonSerializer.Serialize(posts, options); // Serialize the updated list back to JSON
-
-            File.WriteAllText(postsPath, updatedJson); // Save it to the file
-
-            Debug.WriteLine("Successfully created Post, ID: " + newId + ", Title: "+ title);
+            Debug.WriteLine("Successfully created Post, ID: " + newId + ", Title: " + title);
             return true;
         }
 

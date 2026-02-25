@@ -38,7 +38,6 @@
             label_totalComments = new Label();
             label_totalLikes = new Label();
             picBox_feed = new PictureBox();
-            btn_back = new Button();
             btn_newPost = new Button();
             ((System.ComponentModel.ISupportInitialize)picBox_feed).BeginInit();
             SuspendLayout();
@@ -134,15 +133,6 @@
             picBox_feed.TabIndex = 12;
             picBox_feed.TabStop = false;
             // 
-            // btn_back
-            // 
-            btn_back.Location = new Point(12, 12);
-            btn_back.Name = "btn_back";
-            btn_back.Size = new Size(82, 29);
-            btn_back.TabIndex = 13;
-            btn_back.Text = "Previous";
-            btn_back.UseVisualStyleBackColor = true;
-            // 
             // btn_newPost
             // 
             btn_newPost.Location = new Point(566, 12);
@@ -159,7 +149,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(660, 912);
             Controls.Add(btn_newPost);
-            Controls.Add(btn_back);
             Controls.Add(label_totalLikes);
             Controls.Add(label_totalComments);
             Controls.Add(label_totalShares);
@@ -192,7 +181,6 @@
         private Label label_totalComments;
         private Label label_totalLikes;
         private PictureBox picBox_feed;
-        private Button btn_back;
         private Button btn_newPost;
     }
 }
