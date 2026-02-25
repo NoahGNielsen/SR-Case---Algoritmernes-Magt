@@ -9,10 +9,6 @@ using System.Windows.Forms;
 namespace SR_Case___Algoritmernes_Magt
 {
 
-    /*To-DO
-     * - The first few post shoud be random to get a good variety of posts in the beginning, before the algorithm has enough data to personalize the feed
-     * - Bug Fix: If there is no data in the posts.json file, the app crashes. This is because the deserialization process fails when it encounters an empty file.
-     */
     public static class GlobalConfig //settings
     {
         public readonly static bool feedModePersonalization = true; //default: true
@@ -97,7 +93,7 @@ namespace SR_Case___Algoritmernes_Magt
                 return 0;
             }
             /*
-             * Daniels code
+             * Stack Overflow
              */
             using JsonDocument usersDoc = JsonDocument.Parse(File.ReadAllText(usersPath));
             using JsonDocument postsDoc = JsonDocument.Parse(File.ReadAllText(postsPath));
@@ -175,7 +171,6 @@ namespace SR_Case___Algoritmernes_Magt
 
             if (!File.Exists(postsPath) || !File.Exists(usersPath)) return -1;
 
-            // Reads the JSON's and deserializes them into lists
             string postsJson = File.ReadAllText(postsPath);
             string usersJson = File.ReadAllText(usersPath);
 
@@ -206,49 +201,75 @@ namespace SR_Case___Algoritmernes_Magt
             // We take the 'GlobalConfig.watchHistorySize' items from history to exclude
             var excludeIds = watchHistory.TakeLast(GlobalConfig.watchHistorySize).ToList();
 
-            int bestPostId = -1; // Initialize bestPostId to return -1 to indicate an error if no valid post is found
+            int bestPostId = -1;
             long highestScore = long.MinValue;
 
             // Calculate post scores for all posts
             foreach (var post in allPosts)
             {
-                // Checks if the post is in the user's recent watch history, to avoid having to calculate the score for posts in watchHistory
+                // Checks if the post is in the user's recent watch history
                 if (excludeIds.Contains(post.postId)) continue;
 
-                // Get Personal Topic Interest Score
                 int ptisScore = getPTIS(userId, post.postId);
                 long currentPostValueScore = postValue(isNewUser, ptisScore, post.likes, post.comments, post.shares, post.engagement, post.PostDate);
 
-                // Track the highest rating
                 if (currentPostValueScore > highestScore)
                 {
                     highestScore = currentPostValueScore;
                     bestPostId = post.postId;
                 }
             }
-
+            if (GlobalConfig.debugMode) {
+                Debug.WriteLine("Debug Mode | Best Post ID: " + bestPostId + " with a score of: " + highestScore);
+            }
             return bestPostId;
         }
 
-        public static void displayPost(int postId) //stub
+        public static void likePost(int postId)
         {
-            // This function would be responsible for displaying the post in the feed.
-            return;
+            string postsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\posts.json");
+
+            if (!File.Exists(postsPath)) 
+            { 
+                return; 
+            }
+
+            try
+            {
+                // Get the posts, deserialize them, and find the target post
+                string json = File.ReadAllText(postsPath);
+                List<Post> posts = JsonSerializer.Deserialize<List<Post>>(json) ?? new List<Post>();
+
+                // Find the post and update likes
+                Post targetPost = posts.FirstOrDefault(p => p.postId == postId);
+                if (targetPost != null)
+                {
+                    targetPost.likes++;
+
+                    // Serialize and Save
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    string updatedJson = JsonSerializer.Serialize(posts, options);
+                    File.WriteAllText(postsPath, updatedJson);
+
+                    if (GlobalConfig.debugMode)
+                    {
+                        Debug.WriteLine($"Debug Mode | Post {postId} liked. New count: {targetPost.likes}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error liking post: " + ex.Message);
+            }
         }
 
-        public static void likePost(int postId, int userId) //stub
-        {
-            // This function would handle the logic for when a user likes a post, including updating the post's like count and the user's interaction history.
-            return;
-        }
-
-        public static void commentOnPost(int postId, int userId) //stub
+        public static void commentOnPost(int postId) //stub
         {
             // This function would handle the logic for when a user comments on a post, including updating the post's comment count and the user's interaction history.
             return;
         }
 
-        public static void sharePost(int postId, int userId) //stub
+        public static void sharePost(int postId) //stub
         {
             // This function would handle the logic for when a user shares a post, including updating the post's share count and the user's interaction history.
             return;
@@ -268,7 +289,7 @@ namespace SR_Case___Algoritmernes_Magt
 
 
             // Validate input values
-            if (PTIS <= 0 || PTIS >= 100 || likes <= 0 || comments <= 0 || shares <= 0 || postEngagement <= 0 || postEngagement >= 1000)
+            if (PTIS < 0 || PTIS > 100 || likes < 0 || comments < 0 || shares < 0 || postEngagement < 0 || postEngagement > 1000)
             {
                 // If any input value is out of the expected range, return -1 to indicate an error
                 // And log invalid input values for debugging

@@ -123,9 +123,11 @@
             // 
             // picBox_feed
             // 
+            picBox_feed.Cursor = Cursors.No;
             picBox_feed.Location = new Point(1, -1);
             picBox_feed.Name = "picBox_feed";
             picBox_feed.Size = new Size(659, 913);
+            picBox_feed.SizeMode = PictureBoxSizeMode.Zoom;
             picBox_feed.TabIndex = 12;
             picBox_feed.TabStop = false;
             // 
