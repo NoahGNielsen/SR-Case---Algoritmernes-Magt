@@ -16,15 +16,11 @@
       },
       {
         "tag": "cute",
-        "score": 10
+        "score": 35
       },
       {
         "tag": "love",
-        "score": 10
-      },
-      {
-        "tag": "Herkules",
-        "score": 10
+        "score": 35
       },
       {
         "tag": "Monster",
@@ -32,7 +28,7 @@
       },
       {
         "tag": "selfie",
-        "score": 10
+        "score": 15
       },
       {
         "tag": "Ultra Fiesta",
@@ -49,6 +45,107 @@
       {
         "tag": "energyDrink",
         "score": 10
+      },
+      {
+        "tag": "nice clothing",
+        "score": 15
+      },
+      {
+        "tag": "bus",
+        "score": 15
+      },
+      {
+        "tag": "herkules",
+        "score": 35
+      },
+      {
+        "tag": "sleeping",
+        "score": 10
+      },
+      {
+        "tag": "fallout dog",
+        "score": 10
+      },
+      {
+        "tag": "trip",
+        "score": 10
+      },
+      {
+        "tag": "forrest",
+        "score": 10
+      },
+      {
+        "tag": "tree",
+        "score": 10
+      },
+      {
+        "tag": "luke holding a tree",
+        "score": 10
+      },
+      {
+        "tag": "cabin trip",
+        "score": 10
+      },
+      {
+        "tag": "Alexandra",
+        "score": 10
+      },
+      {
+        "tag": "Lab",
+        "score": 10
+      },
+      {
+        "tag": "gloves",
+        "score": 10
+      },
+      {
+        "tag": "consealment",
+        "score": 10
+      },
+      {
+        "tag": "palm tree",
+        "score": 10
+      },
+      {
+        "tag": "antenna",
+        "score": 10
+      },
+      {
+        "tag": "Cape Verde",
+        "score": 10
+      },
+      {
+        "tag": "swimming",
+        "score": 35
+      }
+    ],
+    "lastWatchedVideos": [
+      {
+        "videoId": "2"
+      },
+      {
+        "videoId": "3"
+      },
+      {
+        "videoId": "4"
+      },
+      {
+        "videoId": "5"
+      },
+      {
+        "videoId": "6"
+      },
+      {
+        "videoId": "7"
+      },
+      {
+        "videoId": "8"
+      },
+      {
+        "videoId": "9"
+      },
+      {
+        "videoId": "10"
       }
     ]
   }

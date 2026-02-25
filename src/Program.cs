@@ -33,6 +33,12 @@ namespace SR_Case___Algoritmernes_Magt
     {
         public int userId { get; set; }
         public List<UserTag> pitsTags { get; set; } = new List<UserTag>();
+        public List<WatchHistoryItem> lastWatchedVideos { get; set; } = new List<WatchHistoryItem>();
+    }
+
+    public class WatchHistoryItem
+    {
+        public required string videoId { get; set; }
     }
 
     public class UserTag
@@ -220,8 +226,57 @@ namespace SR_Case___Algoritmernes_Magt
                 Debug.WriteLine("Debug Mode | Best Post ID: " + bestPostId + " with a score of: " + highestScore);
             }
             ensureTagsExistInUser(userId, allPosts.FirstOrDefault(p => p.postId == bestPostId)?.tags ?? new List<string>());
+
+            watchHistoryUpdater(userId, bestPostId); // Update the user's watch history with the new post
             return bestPostId;
         }
+
+        static void watchHistoryUpdater(int userId, int postId)
+        {
+            string usersPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\data\\users.json");
+            if (!File.Exists(usersPath)) return;
+
+            try
+            {
+                // Load all users from the JSON file
+                string json = File.ReadAllText(usersPath);
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                List<User> users = JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
+
+                var user = users.FirstOrDefault(u => u.userId == userId);
+                if (user != null)
+                {
+                    // Initialize the list if it's null for some reason
+                    user.lastWatchedVideos ??= new List<WatchHistoryItem>();
+
+                    // Add the new video ID to the history
+                    user.lastWatchedVideos.Add(new WatchHistoryItem { videoId = postId.ToString() });
+
+                    // Keep only the latest "watchHistorySize" items
+                    if (user.lastWatchedVideos.Count > GlobalConfig.watchHistorySize)
+                    {
+                        // Skips the oldest entries to maintain the correct count
+                        user.lastWatchedVideos = user.lastWatchedVideos
+                            .Skip(user.lastWatchedVideos.Count - GlobalConfig.watchHistorySize)
+                            .ToList();
+                    }
+
+                    // Save the updated list back to the file
+                    string updatedJson = JsonSerializer.Serialize(users, options);
+                    File.WriteAllText(usersPath, updatedJson);
+
+                    if (GlobalConfig.debugMode)
+                    {
+                        Debug.WriteLine($"Debug Mode | Updated Watch History for User {userId}. Current count: {user.lastWatchedVideos.Count}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error in watchHistoryUpdater: " + ex.Message);
+            }
+        }
+
 
         // Checks and creates tags in the user's pitsTags if they don't already exist
         static void ensureTagsExistInUser(int userId, List<string> postTags)
