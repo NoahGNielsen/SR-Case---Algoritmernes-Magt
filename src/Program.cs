@@ -362,6 +362,12 @@ namespace SR_Case___Algoritmernes_Magt
                  * 5-15 seconds: 5 points
                  * 15+ seconds: 10 points
                 */
+
+                if (GlobalConfig.debugMode)
+                {
+                    Debug.WriteLine($"Debug Mode | Time spent on Post {postId}: {timeSpentMs}ms");
+                }
+
                 int pointsToAdd = 0;
                 if (timeSpentMs > 15000)
                 {

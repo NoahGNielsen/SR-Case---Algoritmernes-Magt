@@ -12,15 +12,15 @@
       },
       {
         "tag": "doggo",
-        "score": 10
+        "score": 50
       },
       {
         "tag": "cute",
-        "score": 35
+        "score": 75
       },
       {
         "tag": "love",
-        "score": 35
+        "score": 75
       },
       {
         "tag": "Monster",
@@ -56,7 +56,7 @@
       },
       {
         "tag": "herkules",
-        "score": 35
+        "score": 75
       },
       {
         "tag": "sleeping",
@@ -116,15 +116,79 @@
       },
       {
         "tag": "swimming",
-        "score": 35
+        "score": 40
+      },
+      {
+        "tag": "majestic",
+        "score": 45
+      },
+      {
+        "tag": "nice",
+        "score": 10
+      },
+      {
+        "tag": "looking good",
+        "score": 15
+      },
+      {
+        "tag": "Noah",
+        "score": 50
+      },
+      {
+        "tag": "bestfriends",
+        "score": 45
+      },
+      {
+        "tag": "beach",
+        "score": 45
+      },
+      {
+        "tag": "4080 Super Noctua Edition",
+        "score": 10
+      },
+      {
+        "tag": "4080",
+        "score": 10
+      },
+      {
+        "tag": "GPU",
+        "score": 10
+      },
+      {
+        "tag": "Happy",
+        "score": 10
+      },
+      {
+        "tag": "VJ",
+        "score": 15
+      },
+      {
+        "tag": "concert",
+        "score": 15
+      },
+      {
+        "tag": "music",
+        "score": 15
       }
     ],
     "lastWatchedVideos": [
       {
-        "videoId": "2"
+        "videoId": "9"
       },
       {
-        "videoId": "3"
+        "videoId": "10"
+      },
+      {
+        "videoId": "11"
+      },
+      {
+        "videoId": "13"
+      },
+      {
+        "videoId": "14"
+      },
+      {
+        "videoId": "19"
       },
       {
         "videoId": "4"
@@ -136,16 +200,7 @@
         "videoId": "6"
       },
       {
-        "videoId": "7"
-      },
-      {
-        "videoId": "8"
-      },
-      {
-        "videoId": "9"
-      },
-      {
-        "videoId": "10"
+        "videoId": "23"
       }
     ]
   }
